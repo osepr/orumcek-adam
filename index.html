@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Örümcek Adam: Şehir Salınışı</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game">
+    <canvas id="canvas"></canvas>
+    <button id="attackBtn" aria-label="Ağ topu at">🕸</button>
+    <button id="muteBtn" tabindex="-1" aria-label="Ses aç/kapat">🔊</button>
+    <button id="musicBtn" tabindex="-1" aria-label="Müzik aç/kapat">🎵</button>
+
+    <div id="menu" class="overlay">
+      <h1>ÖRÜMCEK ADAM</h1>
+      <p class="sub">Şehir Salınışı</p>
+      <button id="startBtn">Başla</button>
+      <ul class="help">
+        <li><kbd>Space</kbd> / tıkla / dokun (basılı tut) — ağ at ve sallan</li>
+        <li>Bırak — ağı kopar ve fırla</li>
+        <li><kbd>↑</kbd> / <kbd>W</kbd> — zıpla &nbsp; <kbd>←</kbd><kbd>→</kbd> — havada yön</li>
+        <li><kbd>F</kbd> / <kbd>X</kbd> / sağ tık — dronlara ağ topu fırlat (mobilde 🕸 butonu)</li>
+        <li><kbd>M</kbd> — tüm sesi aç/kapat &nbsp; <kbd>N</kbd> — müziği aç/kapat</li>
+        <li>Dronları ağla vur ya da üstlerine bas, jetonları topla, boşluğa düşme!</li>
+      </ul>
+      <p id="menuBest" class="best"></p>
+    </div>
+
+    <div id="gameover" class="overlay hidden">
+      <h2>Oyun Bitti</h2>
+      <p id="deathReason" class="sub"></p>
+      <p id="finalScore" class="score"></p>
+      <p id="finalBest" class="best"></p>
+      <button id="retryBtn">Tekrar Oyna</button>
+      <p class="hint">veya <kbd>Enter</kbd></p>
+    </div>
+  </div>
+
+  <script src="js/input.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/enemy.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
