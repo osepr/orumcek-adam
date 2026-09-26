@@ -24,8 +24,9 @@ const Input = {
       e.preventDefault();
       this.web = true;
     }, { passive: false });
+    // Sadece oyun alanındaki parmaklara bak: butona basılı tutan parmak ağı tutmasın
     const endTouch = (e) => {
-      if (e.touches.length === 0) this.web = false;
+      if (e.targetTouches.length === 0) this.web = false;
     };
     target.addEventListener("touchend", endTouch);
     target.addEventListener("touchcancel", endTouch);
@@ -33,10 +34,10 @@ const Input = {
     window.addEventListener("blur", () => this.reset());
   },
 
-  // Dokunmatik ekranlar için ekrandaki saldırı butonu
-  bindAttackButton(btn) {
-    const down = (e) => { e.preventDefault(); e.stopPropagation(); this.attack = true; };
-    const up = (e) => { e.preventDefault(); e.stopPropagation(); this.attack = false; };
+  // Dokunmatik ekranlar için ekran butonları (action: "attack" | "jump")
+  bindButton(btn, action) {
+    const down = (e) => { e.preventDefault(); e.stopPropagation(); this[action] = true; };
+    const up = (e) => { e.preventDefault(); e.stopPropagation(); this[action] = false; };
     btn.addEventListener("touchstart", down, { passive: false });
     btn.addEventListener("touchend", up);
     btn.addEventListener("touchcancel", up);

@@ -4,6 +4,7 @@ const menuEl = document.getElementById("menu");
 const gameoverEl = document.getElementById("gameover");
 
 const BEST_KEY = "spiderman-best";
+const IS_TOUCH = window.matchMedia("(pointer: coarse)").matches;
 
 let state = "MENU"; // MENU | PLAYING | GAME_OVER
 let world = new World();
@@ -181,7 +182,10 @@ function drawHUD() {
   if (playTime < 4) {
     ctx.globalAlpha = clamp(4 - playTime, 0, 1);
     ctx.font = "bold 20px Segoe UI, Arial";
-    text("SPACE / tıkla: ağ at  •  bırak: fırla  •  F: dronlara ağ topu", VIEW_W / 2, 90, "#fff", "center");
+    const hint = IS_TOUCH
+      ? "Ekrana basılı tut: ağ at  •  bırak: fırla  •  ⬆ zıpla  •  🕸 ağ topu"
+      : "SPACE / tıkla: ağ at  •  bırak: fırla  •  F: dronlara ağ topu";
+    text(hint, VIEW_W / 2, 90, "#fff", "center");
     ctx.globalAlpha = 1;
   }
 }
@@ -227,7 +231,8 @@ musicBtn.addEventListener("click", toggleMusic);
 muteBtn.addEventListener("mousedown", (e) => e.preventDefault()); // odak almasın, Space'i yutmasın
 muteBtn.addEventListener("click", toggleMute);
 Input.init(canvas);
-Input.bindAttackButton(document.getElementById("attackBtn"));
+Input.bindButton(document.getElementById("attackBtn"), "attack");
+Input.bindButton(document.getElementById("jumpBtn"), "jump");
 document.getElementById("startBtn").addEventListener("click", startGame);
 document.getElementById("retryBtn").addEventListener("click", startGame);
 window.addEventListener("keydown", (e) => {
