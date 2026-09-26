@@ -93,9 +93,14 @@ button:hover { background: #ff3a46; transform: scale(1.05); }
   -webkit-tap-highlight-color: transparent;
 }
 
-#attackBtn { right: 2.5cqw; }
-#jumpBtn {
-  right: calc(2.5cqw + clamp(40px, 11cqw, 80px) + 2cqw);
+/* Ağ butonu en sağda ve daha büyük (en çok kullanılan), ağ topu solunda */
+#webBtn {
+  right: 2.5cqw;
+  width: clamp(48px, 13cqw, 92px);
+  height: clamp(48px, 13cqw, 92px);
+}
+#attackBtn {
+  right: calc(2.5cqw + clamp(48px, 13cqw, 92px) + 2cqw);
   background: rgba(31, 69, 196, 0.75);
 }
 
@@ -103,7 +108,7 @@ button:hover { background: #ff3a46; transform: scale(1.05); }
   body.playing .touchBtn { display: block; }
 }
 
-/* Ses aç/kapat: sol altta, menü üstünde de görünür */
+/* Ses aç/kapat: masaüstünde sol altta, menü üstünde de görünür */
 #muteBtn, #musicBtn {
   position: absolute;
   left: 1.5cqw;
@@ -130,9 +135,16 @@ button:hover { background: #ff3a46; transform: scale(1.05); }
   .help-touch { display: block; }
   .overlay { gap: clamp(4px, 1.5cqw, 12px); }
   .overlay button { padding: 8px 32px; margin-top: 0; }
+
+  /* Mobilde ses butonları sağ üste, "Rekor" yazısının altına
+     (alttaki oyun butonlarıyla karışmasın) */
+  #muteBtn, #musicBtn { top: 5.5cqw; bottom: auto; left: auto; }
+  #musicBtn { right: 1.5cqw; }
+  #muteBtn { right: calc(1.5cqw + clamp(28px, 5cqw, 42px) + 1cqw); }
 }
 @media (pointer: coarse) and (orientation: portrait) {
   .rotate-tip { display: list-item; color: #ffd23f; }
+  h1 { font-size: 5.5vw; } /* sağ üstteki ses butonlarına değmesin */
 }
 
 .help {

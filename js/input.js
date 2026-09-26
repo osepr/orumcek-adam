@@ -20,13 +20,14 @@ const Input = {
     });
     target.addEventListener("contextmenu", (e) => e.preventDefault());
 
+    // Mobilde ekrana dokunmak zıplatır (ağ ve ağ topu ekran butonlarında)
     target.addEventListener("touchstart", (e) => {
       e.preventDefault();
-      this.web = true;
+      this.jump = true;
     }, { passive: false });
-    // Sadece oyun alanındaki parmaklara bak: butona basılı tutan parmak ağı tutmasın
+    // Sadece oyun alanındaki parmaklara bak: butona basılı tutan parmak etkilemesin
     const endTouch = (e) => {
-      if (e.targetTouches.length === 0) this.web = false;
+      if (e.targetTouches.length === 0) this.jump = false;
     };
     target.addEventListener("touchend", endTouch);
     target.addEventListener("touchcancel", endTouch);
@@ -34,7 +35,7 @@ const Input = {
     window.addEventListener("blur", () => this.reset());
   },
 
-  // Dokunmatik ekranlar için ekran butonları (action: "attack" | "jump")
+  // Dokunmatik ekranlar için ekran butonları (action: "web" | "attack")
   bindButton(btn, action) {
     const down = (e) => { e.preventDefault(); e.stopPropagation(); this[action] = true; };
     const up = (e) => { e.preventDefault(); e.stopPropagation(); this[action] = false; };

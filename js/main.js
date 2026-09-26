@@ -183,9 +183,10 @@ function drawHUD() {
     ctx.globalAlpha = clamp(4 - playTime, 0, 1);
     ctx.font = "bold 20px Segoe UI, Arial";
     const hint = IS_TOUCH
-      ? "Ekrana basılı tut: ağ at  •  bırak: fırla  •  ⬆ zıpla  •  🕸 ağ topu"
+      ? "Ekrana dokun: zıpla  •  🕸 basılı tut: ağ at, bırak: fırla  •  🎯 ağ topu"
       : "SPACE / tıkla: ağ at  •  bırak: fırla  •  F: dronlara ağ topu";
-    text(hint, VIEW_W / 2, 90, "#fff", "center");
+    // Mobilde biraz aşağıda: sağ üstteki ses butonlarının altında kalsın
+    text(hint, VIEW_W / 2, IS_TOUCH ? 150 : 90, "#fff", "center");
     ctx.globalAlpha = 1;
   }
 }
@@ -232,7 +233,7 @@ muteBtn.addEventListener("mousedown", (e) => e.preventDefault()); // odak almas�
 muteBtn.addEventListener("click", toggleMute);
 Input.init(canvas);
 Input.bindButton(document.getElementById("attackBtn"), "attack");
-Input.bindButton(document.getElementById("jumpBtn"), "jump");
+Input.bindButton(document.getElementById("webBtn"), "web");
 document.getElementById("startBtn").addEventListener("click", startGame);
 document.getElementById("retryBtn").addEventListener("click", startGame);
 window.addEventListener("keydown", (e) => {
